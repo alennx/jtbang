@@ -121,32 +121,6 @@ angular.module('ionicApp.services', [])
             }).error(function () {
                 funcs.ieerror();
             });
-            // $http.post(url_login,data).then(function(response){
-            //     user = response.data;
-            //     if(user.errno == '1'){
-            //         var userid = user.rsm.user.userid;
-            //         window.sessionStorage.setItem(set_userid,userid);
-            //         $rootScope.jtbang_user = user;
-            //         return user;
-            //     }else{
-            //         $http.post(url_jtbang_register,data).success(function(response){
-            //             register = response.data;
-            //             if(response.errno == '1'){
-            //                 $http.post(url_login,data).success(function(response){
-            //                     user = response.data;
-            //                     if(user.errno == '1'){
-            //                         $rootScope.jtbang_user = user;
-            //                         var userid = user.rsm.user.userid;
-            //                         window.sessionStorage.setItem(set_userid,userid);
-            //                     }
-            //                 });
-            //             }else{
-            //                 return;
-            //             }
-            //         });
-            //         return user;
-            //     }
-            // });
         },
         //网络连接
         ieerror:function(){
@@ -301,7 +275,19 @@ angular.module('ionicApp.services', [])
             var atckey = gethaxi.atckey;
             var url_new = "http://www.jtbang.cn/publish/ajax/publish_question/";
             var data = {'category_id':'2','post_hash':posthash,'attach_access_key':atckey,'question_content':question_content,'question_detail':question_detail,'_post_type':'ajax'};
-            $http.post(url_new,data).success(function(response){
+            $http({
+                method:"POST",
+                url:url_new,
+                data:data,
+                headers: {'Content-Type': 'application/x-www-form-urlencoded' },
+                transformRequest: function(obj) {
+                    var str = [];
+                    for (var p in obj) {
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    }
+                    return str.join("&");
+                }
+            }).success(function(response){
                 if(response.errno == 1){
                     $ionicPopup.show({
                         title: "发布问题成功",
@@ -322,7 +308,7 @@ angular.module('ionicApp.services', [])
                 $ionicPopup.alert({
                     title: "获取信息失败，请重试"
                 })
-            })
+            });
             return {
                 question_id: '',
                 question_content: '',

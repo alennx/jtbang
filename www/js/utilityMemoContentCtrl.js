@@ -64,7 +64,19 @@ angular.module('ionicApp.MemoContentCtrl', [])
                 var atckey = reply_gethaxi.atckey;
                 var defer=$q.defer();
                 var data = {'question_id':question_id,'post_hash':posthash,'attach_access_key':atckey,'answer_content':content,'_post_type':'ajax'};
-                $http.post(url_newreply+"?now="+ new Date().getTime(),data,{cache: false}).success(function(response){
+                $http({
+                    method:"POST",
+                    url:url_newreply+"?now="+ new Date().getTime(),
+                    data:data,
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded' },
+                    transformRequest: function(obj) {
+                        var str = [];
+                        for (var p in obj) {
+                            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                        }
+                        return str.join("&");
+                    }
+                }).success(function(response){
                     defer.resolve();
                     if(response.errno == -1){
                         $ionicPopup.alert({
@@ -72,7 +84,10 @@ angular.module('ionicApp.MemoContentCtrl', [])
                         })
                     }
                 }).error(function(){
-                })
+                    $ionicPopup.alert({
+                        title: "网络出错，请重试"
+                    })
+                });
                 return defer.promise;
             }
             //回复内容
