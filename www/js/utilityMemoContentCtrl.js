@@ -78,7 +78,17 @@ angular.module('ionicApp.MemoContentCtrl', [])
                     }
                 }).success(function(response){
                     defer.resolve();
-                    if(response.errno == -1){
+                    if(response.errno == 1) {
+                        $ionicPopup.show({
+                            title: "发布问题成功",
+                            buttons: [
+                                {
+                                    text: "<b>确认</b>",
+                                    type: "button-positive"
+                                }
+                            ]
+                        });
+                    }else{
                         $ionicPopup.alert({
                             title: "回答内容失败，请重试"
                         })
