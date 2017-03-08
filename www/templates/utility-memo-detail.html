@@ -1,0 +1,26 @@
+<ion-view title="发布信息" hide-tabs>
+
+<ion-nav-buttons side="right">
+	<a class="button button-clear" ng-click="saveMemo()"> 保存 </a>
+</ion-nav-buttons>
+
+<ion-content has-header="true">
+	
+	<div class="list">
+		<label class="item item-input">
+			<div class="input-label positive" style="width:15%"> 标题 </div>
+			<input style="height:60px" class="memos_detail" type="text" placeholder="交通帮" name="question_content" ng-model="memo.question_content">
+		</label>
+		
+		<label class="item item-input">
+			<span class="input-label positive" style="width:15%">内容</span>
+			<textarea class="memos_detail" placeholder="{{memo.placeholder}}" rows="10" name="question_detail" ng-model="memo.question_detail"></textarea>
+		</label>
+
+		<!--<div class="padding">
+			<button class="button button-block button-assertive" ng-show="DelButtonShow" ng-click="delmemo({{memoId}})"> 删除 </button>
+		</div>-->
+	</div>
+
+</ion-content>
+</ion-view>

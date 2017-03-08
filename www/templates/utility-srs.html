@@ -1,0 +1,26 @@
+<ion-view hide-tabs>
+    <ion-nav-buttons side="right">
+        <label class="item item-input">
+            <i class="icon ion-search placeholder-icon"></i>
+            <input class="input-label" type="search" placeholder="请输入想要查询的内容" ng-model="srs.jtb_search">
+        </label>
+        <button class="button button-icon button-clear ion-android-search" ng-click="jtb_search_commit()"></button>
+    </ion-nav-buttons>
+    <ion-content class="padding">
+        <div class="list">
+            <a class="item item-avatar row" ng-repeat="search in searchs" ng-click="addReply()" ng-href="#/menu/tab/memo-content/{{search.search_id}}">
+                <span class="col">
+                    <h2 class="royal title">{{search.name}}</h2>
+                    <div class="out">
+                        <span>评论：{{search.detail.answer_count}}</span>
+                    </div>
+                        <!--<p>{{search.detail}}</p>-->
+                </span>
+            </a>
+        </div>
+        <ion-infinite-scroll
+                on-infinite="SrsLoadMore()"
+                distance="1%">
+        </ion-infinite-scroll>
+    </ion-content>
+</ion-view>

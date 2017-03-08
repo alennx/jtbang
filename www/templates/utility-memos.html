@@ -1,0 +1,58 @@
+<ion-view title="交通帮" hide-tabs>
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-ios-compose-outline" ng-click="addMemo()">提问</button>
+    </ion-nav-buttons>
+    <!--右边工具栏-->
+    <ion-nav-buttons side="right">
+        <button class="button button-icon ion-more" ng-click="popover.show($event)"></button>
+    </ion-nav-buttons>
+    <ion-content delegate-handle="mainScroll">
+        <!--搜索项-->
+        <img src="img/logo-max.png" style="width:30%;margin:10px 0 0 35%;">
+        <div class="button_pos" style="width: 100%;">
+            <label class="item jtbang_item item-input" style="width:80%;height:45px;margin:0 10%;border-radius: 50px;">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input class="input-label" style="width: 140px;float:left;margin:3px 0 0 10px;" type="search" placeholder="请输入查询内容" ng-model="srs.jtb_search">
+            </label>
+            <button class="button button-clear" ng-click="jtb_search_commit()" style="position:relative;left:77%;bottom:45px;min-height:45px;z-index:30;background-color: #ff9700;-webkit-border-radius: 0 50px 50px 0;color:#fff;">确定</button>
+        </div>
+        <!--上拉刷新内容-->
+        <ion-refresher
+                pulling-text="加载中…"
+                on-refresh="doRefresh()">
+        </ion-refresher>
+        <!--问题列表-->
+        <div class="list">
+            <div class="item jtbang_item item-avatar row" ng-repeat="memo in memos track by $index"  on-touch='unmemos=true' on-release='unmemos=false' ng-class="{unmemos_clicked:unmemos}">
+                <span class="col">
+                    <a style="text-decoration: none;" ng-href="#/menu/tab/memo-content/{{memo.question_id}}">
+                        <div class="user" style="color:#ff9700;"><img ng-src="img/avatar-max-img.png">{{memo.user_info.user_name}}</div>
+                        <h2 class="royal title">{{memo.question_content}}</h2>
+                        <div class="jtbang_topics" ng-if="memo.topics.length != 0">{{memo.topics[0].topic_title}}</div>
+                        <div class="hot" ng-if="memo.answer_count >= 3">热门</div>
+                        <p>{{memo.question_detail}}</p>
+                    </a>
+                    <div class="out">
+                        <div class="out_choice"><div class="icon ion-android-star"></div><span>{{memo.focus_count}}</span></div>
+                        <div class="out_choice"><div class="icon ion-eye"></div><span>{{memo.view_count}}</span></div>
+                        <div class="out_choice"><div class="icon ion-chatbox-working"></div><span>{{memo.answer_count}}</span></div>
+                        <!--<div class="out_choice"><div class="icon ion-forward" ng-click="popupMenu(memo)"></div></div>-->
+                    </div>
+                    <!--<h2 class="royal title">{{memo.question_content}}</h2>-->
+                    <!--<p>{{memo.question_detail}}</p>-->
+                    <!--<div class="out">-->
+                        <!--<span>评论：{{memo.answer_count}}</span>-->
+                        <!--<span>浏览次数：{{memo.view_count}}</span><br>-->
+                        <!--<span>发布时间：{{memo.add_time | date:'yyyy-MM-dd HH:mm:ss'}}</span>-->
+                        <!--<span class="user" style="color:#ff9700;float: right;">提问人：{{memo.user_info.user_name}}</span>-->
+                    <!--</div>-->
+                </span>
+            </div>
+        </div>
+        <!--更多-->
+        <ion-infinite-scroll
+                on-infinite="loadMore()"
+                distance="1%">
+        </ion-infinite-scroll>
+    </ion-content>
+</ion-view>

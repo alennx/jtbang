@@ -1,0 +1,77 @@
+<ion-view title="我的" hide-tabs>
+    <ion-content class="padding">
+        <div class="list">
+            <div class="item item-divider">帐号</div>
+
+            <div class="item item-icon-left item-button-right" ng-show="isLogin">
+                <i class="icon ion-ios7-person"></i>
+                	已登录
+                <button class="button button-assertive" ng-click="logout()">退出</button>
+            </div>
+            <div class="item item-icon-left item-button-right" ng-show="!isLogin">
+                <i class="icon ion-ios7-person"></i>
+              		暂未登录
+                <button class="button button-positive" ng-click="login()">注册  / 登录</button><!--click= !click-->
+            </div>
+            <!-- 登录界面——默认隐藏 -->
+            <form name="myform" ng-show="click">
+					<label class="item item-input">
+						<i class="icon ion-ios-person-outline positive"></i>
+						<input type="text" placeholder="请输入您的用户名" ng-model="username" ng-pattern="/^[A-Za-z]{1}[0-9A-Za-z_]{1,19}$/" ng-minlength="4" ng-maxlength="12" required>
+						<p ng-show="myform.username.$error.minlength" class="help-block">用户名太短</p>
+	        			<p ng-show="myform.username.$error.maxlength" class="help-block">用户名太长</p>
+					</label>
+					<label class="item item-input">
+						<i class="icon ion-ios-unlocked-outline positive"></i>
+						<input type="password" placeholder="请输入您的密码" ng-model="password" required>
+						<p ng-show="myform.password.$error.maxlength" class="help-block">密码不能为空</p>
+					</label>
+					<label class="item item-checkbox">
+						<label class="checkbox">
+							<input type="checkbox" checked>
+						</label>
+						记住密码
+					</label>
+					<div class="text-center padding-left padding-right">
+						<button class="button button-block button-balanced" ng-disabled="mtform.$invalid" ng-click="login_load();">登录</button>
+					</div>
+				</form>
+            <div class="item item-divider">功能（需要登录）</div>
+            <!--<div class="item item-icon-left item-button-right">
+            	<i class="badge badge-assertive" style="margin-right: 30px;">7</i>
+                <i class="icon ion-ios7-chatbubble-outline"></i>
+                	我的私信
+                <button class="button button-balanced" ng-click="openSmss()">查看</button>
+            </div>-->
+            <div class="item item-icon-left item-button-right" ng-click="myques()">
+                <i class="icon ion-ios7-help-outline"></i>
+                	我的提问
+            </div>
+            <div class="item item-icon-left item-button-right" ng-click="myanswers()">
+                <i class="icon ion-ios7-heart-outline"></i>
+               		 我的回答
+            </div>
+
+            <div class="item item-divider">其他</div>
+            <div class="item item-icon-left" ng-click="feedback()">
+                <i class="icon ion-ios7-email-outline"></i>
+                	意见反馈 <span class="balanced">{{feedbackResult}}</span>
+            </div>
+            <div class="item item-icon-left" ng-click="aboutUs()">
+                <i class="icon ion-ios7-information-outline"></i>
+                	关于
+            </div>
+
+            <div class="item item-divider">推荐应用</div>
+            <div class="item item-icon-left">
+                <i class="icon ion-ios7-paperplane-outline"></i>
+                	车行无忧 
+            </div>
+
+            <!--<div class="item item-divider">开发模式</div>
+            <div class="item" ng-click="delData('things')">删除所有信息数据</div>
+            <div class="item" ng-click="delData('records')">删除所有备忘录数据</div>
+            <div class="item" ng-click="delData('all')">删除所有数据</div>-->
+        </div>
+    </ion-content>
+</ion-view>

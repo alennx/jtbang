@@ -1,0 +1,31 @@
+<ion-view title="{{memo.title}}" hide-tabs>
+
+<!--<ion-nav-buttons side="right">
+	<a class="button button-clear" ng-click="saveMemo()"> 保存 </a>
+</ion-nav-buttons>-->
+
+<ion-content has-header="true">
+	
+	<div class="list">
+		<div class="item">
+			<div class="memo_content_title item-ng">{{search.name}}</div>
+		</div>
+
+		<!--<div class="item">
+			<p class="memo_content_p item-ng">{{memo.question_detail}}</p>
+            <span style="float: left">发布人:{{memo.user_info.user_name}}</span>
+		</div>-->
+		<!--评论列表-->
+		<div class="aw-list">
+			<ul>
+				<li class="aw-item" ng-modal="answers">{{view_count}}</li>
+			</ul>
+		</div>
+		<div class="reply">
+			<textarea rows="3" cols="20" style="resize:none;" ng-model="replyData.content"></textarea>
+			<button class="button button-block button-assertive" ng-click="saveReply()" ng-class="{'disabled':replyData.content == ''}"> 回复 </button>
+		</div>
+	</div>
+
+</ion-content>
+</ion-view>

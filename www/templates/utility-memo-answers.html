@@ -1,0 +1,12 @@
+<ion-view title="我的问题" hide-tabs>
+<ion-content>
+	<div class="list">
+		<a class="item row" ng-repeat="anwser in anwsers "  ng-href="#/tab/memo-content/{{anwser.associate_id}}">
+			<span class="col">
+				<h2 class="royal title">{{anwser.associate_content}}...</h2>
+				<p>{{anwser.title}}</p>
+			</span>
+		</a>
+	</div>
+</ion-content>
+</ion-view>
