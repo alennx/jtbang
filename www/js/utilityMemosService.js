@@ -48,10 +48,22 @@ angular.module('ionicApp.services', [])
                 password:hex_md5(jtb_user_name).substr(8,16),
                 email:zeroFill(uid)+'@okek.cn',
                 agreement_chk:'agree'
-            }
+            };
             var url_jtbang_register = "http://www.jtbang.cn/account/ajax/register_process/";
             var url_login = "http://www.jtbang.cn/account/ajax/login_process/";
-            $http.post(url_login,data).then(function(response){
+            $http({
+                method:"POST",
+                url:url_login,
+                data:data,
+                headers: {'Content-Type': 'application/x-www-form-urlencoded' },
+                transformRequest: function(obj) {
+                    var str = [];
+                    for (var p in obj) {
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    }
+                    return str.join("&");
+                }
+            }).success().then(function(response){
                 user = response.data;
                 if(user.errno == '1'){
                     var userid = user.rsm.user.userid;
@@ -77,6 +89,32 @@ angular.module('ionicApp.services', [])
                     return user;
                 }
             });
+            // $http.post(url_login,data).then(function(response){
+            //     user = response.data;
+            //     if(user.errno == '1'){
+            //         var userid = user.rsm.user.userid;
+            //         window.sessionStorage.setItem(set_userid,userid);
+            //         $rootScope.jtbang_user = user;
+            //         return user;
+            //     }else{
+            //         $http.post(url_jtbang_register,data).success(function(response){
+            //             register = response.data;
+            //             if(response.errno == '1'){
+            //                 $http.post(url_login,data).success(function(response){
+            //                     user = response.data;
+            //                     if(user.errno == '1'){
+            //                         $rootScope.jtbang_user = user;
+            //                         var userid = user.rsm.user.userid;
+            //                         window.sessionStorage.setItem(set_userid,userid);
+            //                     }
+            //                 });
+            //             }else{
+            //                 return;
+            //             }
+            //         });
+            //         return user;
+            //     }
+            // });
         },
         //交通帮退出
         OutJtbang_user:function(){

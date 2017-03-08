@@ -94,7 +94,7 @@ angular.module('ionicApp', ['ionic', 'ionicApp.controllers',  'ionicApp.services
             .state('menu.tab.memo-ques', {
                 url: '/memo-ques',
                 views: {
-                    'tab-my': {
+                    'tab-memos': {
                         templateUrl: 'templates/utility-memo-ques.html',
                         controller:'MemoQuesCtrl'
                     }
@@ -104,7 +104,7 @@ angular.module('ionicApp', ['ionic', 'ionicApp.controllers',  'ionicApp.services
             .state('menu.tab.memo-answers', {
                 url: '/memo-answers',
                 views: {
-                    'tab-my': {
+                    'tab-memos': {
                         templateUrl: 'templates/utility-memo-answers.html',
                         controller:'MemoAnswersCtrl'
                     }
