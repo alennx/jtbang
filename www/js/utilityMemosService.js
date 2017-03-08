@@ -69,6 +69,7 @@ angular.module('ionicApp.services', [])
                     var userid = user.rsm.user.userid;
                     window.sessionStorage.setItem(set_userid,userid);
                     $rootScope.jtbang_user = user;
+                    $rootScope.isjtbanglogin = true;
                     return user;
                 }else{
                     $http.post(url_jtbang_register,data).success(function(response){
@@ -80,6 +81,7 @@ angular.module('ionicApp.services', [])
                                     $rootScope.jtbang_user = user;
                                     var userid = user.rsm.user.userid;
                                     window.sessionStorage.setItem(set_userid,userid);
+                                    $rootScope.isjtbanglogin = true;
                                 }
                             });
                         }else{

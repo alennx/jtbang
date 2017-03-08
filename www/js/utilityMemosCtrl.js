@@ -5,6 +5,7 @@ angular.module('ionicApp.MemosCtrl', [])
             $scope.$on("$ionicView.beforeEnter",function(){
                 $rootScope.isHideTabs=true;
             });
+            $rootScope.isjtbanglogin=false;
             var uid = localStorage.getItem('uid');
             Memos.GetJtbang_user(uid);
             //首页加载
@@ -106,10 +107,9 @@ angular.module('ionicApp.MemosCtrl', [])
                     $scope.$broadcast('scroll.infiniteScrollComplete');
                 });
             };
-            var jtbang_login = window.localStorage.getItem(local_logined);
             //添加信息
             $scope.addMemo = function () {
-                if(jtbang_login == 'true'){
+                if($rootScope.isjtbanglogin){
                     Memos.getMemo();
                 }else{
                     $ionicPopup.show({
@@ -134,7 +134,7 @@ angular.module('ionicApp.MemosCtrl', [])
             $scope.myques = function () {
                 if($scope.popover!=null)
                     $scope.popover.hide();
-                if(jtbang_login == 'true'){
+                if($rootScope.isjtbanglogin){
                     $state.go('menu.tab.memo-ques', {});
                 }else{
                     $ionicPopup.show({
@@ -159,7 +159,7 @@ angular.module('ionicApp.MemosCtrl', [])
             $scope.myanswers = function () {
                 if($scope.popover!=null)
                     $scope.popover.hide();
-                if(jtbang_login == 'true'){
+                if($rootScope.isjtbanglogin){
                     $state.go('menu.tab.memo-answers', {});
                 }else{
                     $ionicPopup.show({

@@ -1,7 +1,7 @@
 <ion-view title="我的问题" hide-tabs>
 <ion-content>
 	<div class="list">
-		<a class="item row" ng-repeat="que in ques "  ng-href="#/tab/memo-content/{{que.associate_id}}">
+		<a class="item row" ng-repeat="que in ques "  ng-href="#/menu/tab/memo-content/{{que.associate_id}}">
 			<span class="col">
 				<h2 class="royal title">{{que.associate_content}}...</h2>
 				<p>{{que.content | limitTo:14}}</p>
