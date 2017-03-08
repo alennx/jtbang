@@ -11,16 +11,9 @@ angular.module('ionicApp', ['ionic', 'ionicApp.controllers',  'ionicApp.services
   });
 })
 
- .config(function ($stateProvider, $urlRouterProvider) {
+ .config(function ($stateProvider, $urlRouterProvider,$locationProvider) {
 
         $stateProvider
-        //向导页面
-/*        	.state('wizard', {
-		        url: '/',
-		        templateUrl: 'templates/wizard.html',
-		        controller: 'WizardCtrl'
-		     })*/
-        
         	//全局
         	.state('menu',{
         		url:"/menu",
@@ -36,16 +29,6 @@ angular.module('ionicApp', ['ionic', 'ionicApp.controllers',  'ionicApp.services
 		        }
 		      }
             })
-            /*//更多
-            .state('menu.tab.more', {
-                url: '/more',
-                views: {
-                    'tab-more': {
-                        templateUrl: 'templates/more.html',
-                        controller: 'MoreCtrl'
-                    }
-                }
-            })*/
             //交通帮
             .state('menu.tab.memos',{
                 url:'/memos',
@@ -128,6 +111,7 @@ angular.module('ionicApp', ['ionic', 'ionicApp.controllers',  'ionicApp.services
                 }
             })
           ;
+        $locationProvider.html5Mode(true);
         // 所有的返回值
         $urlRouterProvider.otherwise('/menu/tab/memos');
 

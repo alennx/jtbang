@@ -5,7 +5,8 @@ angular.module('ionicApp.MemosCtrl', [])
             $scope.$on("$ionicView.beforeEnter",function(){
                 $rootScope.isHideTabs=true;
             });
-            Memos.GetJtbang_user($location.search().uid);
+            var uid = localStorage.getItem('uid');
+            Memos.GetJtbang_user(uid);
             //首页加载
             Memos.GetPer_page();
             //上拉刷新

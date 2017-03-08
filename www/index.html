@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <base href="/">
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title>交通帮 - 有问题 - 找交通帮</title>
@@ -23,4 +24,10 @@
 <body animation="no-animation"  ng-app="ionicApp">
 <ion-nav-view title="New Entry Form" hide-tabs></ion-nav-view>
 </body>
+<script>
+    //保存uid到本地
+    var uid= window.location.search;
+    uid = uid.slice(5);
+    localStorage.setItem('uid',uid);
+</script>
 </html>
