@@ -63,8 +63,8 @@ angular.module('ionicApp.services', [])
                     }
                     return str.join("&");
                 }
-            }).success().then(function(response){
-                user = response.data;
+            }).success(function(response){
+                user = response;
                 if(user.errno == '1'){
                     var userid = user.rsm.user.userid;
                     window.sessionStorage.setItem(set_userid,userid);
@@ -72,24 +72,54 @@ angular.module('ionicApp.services', [])
                     $rootScope.isjtbanglogin = true;
                     return user;
                 }else{
-                    $http.post(url_jtbang_register,data).success(function(response){
-                        register = response.data;
+                    $http({
+                        method:"POST",
+                        url:url_jtbang_register,
+                        data:data,
+                        headers: {'Content-Type': 'application/x-www-form-urlencoded' },
+                        transformRequest: function(obj) {
+                            var str = [];
+                            for (var p in obj) {
+                                str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                            }
+                            return str.join("&");
+                        }
+                    }).success(function(response){
+                        register = response;
                         if(response.errno == '1'){
-                            $http.post(url_login,data).success(function(response){
-                                user = response.data;
+                            $http({
+                                method:"POST",
+                                url:url_login,
+                                data:data,
+                                headers: {'Content-Type': 'application/x-www-form-urlencoded' },
+                                transformRequest: function(obj) {
+                                    var str = [];
+                                    for (var p in obj) {
+                                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                                    }
+                                    return str.join("&");
+                                }
+                            }).success(function(response){
+                                user = response;
                                 if(user.errno == '1'){
                                     $rootScope.jtbang_user = user;
                                     var userid = user.rsm.user.userid;
                                     window.sessionStorage.setItem(set_userid,userid);
                                     $rootScope.isjtbanglogin = true;
                                 }
+                            }).error(function () {
+                                funcs.ieerror();
                             });
                         }else{
                             return;
                         }
+                    }).error(function () {
+                        funcs.ieerror();
                     });
                     return user;
                 }
+            }).error(function () {
+                funcs.ieerror();
             });
             // $http.post(url_login,data).then(function(response){
             //     user = response.data;
@@ -117,6 +147,20 @@ angular.module('ionicApp.services', [])
             //         return user;
             //     }
             // });
+        },
+        //网络连接
+        ieerror:function(){
+            $ionicPopup.show({
+                template: "",
+                title: "网络连接错误，请重试",
+                scope: $scope,
+                buttons: [
+                    {
+                        text: "<b>确定</b>",
+                        type: "button-positive",
+                    }
+                ]
+            })
         },
         //交通帮退出
         OutJtbang_user:function(){
