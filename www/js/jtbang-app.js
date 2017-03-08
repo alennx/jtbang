@@ -111,7 +111,6 @@ angular.module('ionicApp', ['ionic', 'ionicApp.controllers',  'ionicApp.services
                 }
             })
           ;
-        $locationProvider.html5Mode(true);
         // 所有的返回值
         $urlRouterProvider.otherwise('/menu/tab/memos');
 
