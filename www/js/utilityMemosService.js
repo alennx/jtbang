@@ -1,5 +1,5 @@
 angular.module('ionicApp.services', [])
-    .factory('Memos', function ($http,$state,$rootScope,$ionicPopup,$q) {
+    .factory('Memos', function ($http,$state,$rootScope,$ionicPopup,$q,$ionicLoading) {
     var jtb_url = "http://www.jtbang.cn/explore/ajax/list/isapp-y__";
     var memos = {};
     var questions = {};
@@ -10,6 +10,12 @@ angular.module('ionicApp.services', [])
     var gethaxi = {};
     var user = {};
     var register ={};
+    $rootScope.Loadingshow=function(){
+        $ionicLoading.show({
+            template: '<ion-spinner icon="ios"></ion-spinner><p>正在加载....</p>' //替换默认动画
+        });
+    };
+    $rootScope.Loadinghide=function(){$ionicLoading.hide()};
     var funcs= {
         //获取我的提问列表
         GetQues_page: function(){

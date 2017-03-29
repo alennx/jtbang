@@ -130,6 +130,10 @@ angular.module('ionicApp.MemosCtrl', [])
                     })
                 }
             };
+            $scope.GoContent=function(id){
+                localStorage.setItem('set_question_id',id);
+                $state.go('tab.memo-content');
+            };
             //我的提问
             $scope.myques = function () {
                 if($scope.popover!=null)

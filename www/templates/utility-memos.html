@@ -1,6 +1,6 @@
 <ion-view title="交通帮" hide-tabs>
     <ion-nav-buttons side="left">
-        <button class="button button-icon button-clear ion-ios-compose-outline" ng-click="addMemo()">提问</button>
+        <button class="button button-icon button-clear" ng-click="addMemo()">提问</button>
     </ion-nav-buttons>
     <!--右边工具栏-->
     <ion-nav-buttons side="right">
@@ -25,7 +25,7 @@
         <div class="list">
             <div class="item jtbang_item item-avatar row" ng-repeat="memo in memos track by $index"  on-touch='unmemos=true' on-release='unmemos=false' ng-class="{unmemos_clicked:unmemos}">
                 <span class="col">
-                    <a style="text-decoration: none;" ng-href="#/tab/memo-content/{{memo.question_id}}">
+                    <a style="text-decoration: none;" ng-click="GoContent(memo.question_id)">
                         <div class="user" style="color:#ff9700;"><img ng-src="img/avatar-max-img.png">{{memo.user_info.user_name}}</div>
                         <h2 class="royal title">{{memo.question_content}}</h2>
                         <div class="jtbang_topics" ng-if="memo.topics.length != 0">{{memo.topics[0].topic_title}}</div>
