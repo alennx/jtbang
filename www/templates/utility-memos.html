@@ -25,7 +25,7 @@
         <div class="list">
             <div class="item jtbang_item item-avatar row" ng-repeat="memo in memos track by $index"  on-touch='unmemos=true' on-release='unmemos=false' ng-class="{unmemos_clicked:unmemos}">
                 <span class="col">
-                    <a style="text-decoration: none;" ng-href="#/menu/tab/memo-content/{{memo.question_id}}">
+                    <a style="text-decoration: none;" ng-href="#/tab/memo-content/{{memo.question_id}}">
                         <div class="user" style="color:#ff9700;"><img ng-src="img/avatar-max-img.png">{{memo.user_info.user_name}}</div>
                         <h2 class="royal title">{{memo.question_content}}</h2>
                         <div class="jtbang_topics" ng-if="memo.topics.length != 0">{{memo.topics[0].topic_title}}</div>

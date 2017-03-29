@@ -268,7 +268,7 @@ angular.module('ionicApp.services', [])
                 gethaxi = response.data;
                 haxi = JSON.stringify(gethaxi);
                 window.sessionStorage.setItem(memo1,haxi);
-                $state.go('menu.tab.memo-detail', {});
+                $state.go('tab.memo-detail', {});
             });
         },
         //发布问题
@@ -308,7 +308,7 @@ angular.module('ionicApp.services', [])
                             }
                         ]
                     });
-                    $state.go('menu.tab.memos',{reload: true});
+                    $state.go('tab.memos',{reload: true});
                 }else{
                     $ionicPopup.alert({
                         title: "输入内容错误，请重试"

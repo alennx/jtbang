@@ -81,7 +81,7 @@ angular.module('ionicApp.MemosCtrl', [])
                         ]
                     })
                 }else{
-                    $state.go('menu.tab.memo-srs', {});
+                    $state.go('tab.memo-srs', {});
                     Memos.Search_request(
                         $scope.srs.jtb_search.toUpperCase()
                     );
@@ -135,7 +135,7 @@ angular.module('ionicApp.MemosCtrl', [])
                 if($scope.popover!=null)
                     $scope.popover.hide();
                 if($rootScope.isjtbanglogin){
-                    $state.go('menu.tab.memo-ques', {});
+                    $state.go('tab.memo-ques', {});
                 }else{
                     $ionicPopup.show({
                         title: "温馨提示",
@@ -160,7 +160,7 @@ angular.module('ionicApp.MemosCtrl', [])
                 if($scope.popover!=null)
                     $scope.popover.hide();
                 if($rootScope.isjtbanglogin){
-                    $state.go('menu.tab.memo-answers', {});
+                    $state.go('tab.memo-answers', {});
                 }else{
                     $ionicPopup.show({
                         title: "温馨提示",
