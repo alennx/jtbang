@@ -96,7 +96,7 @@ angular.module('ionicApp.MemosCtrl', [])
                         }
                     });
                 }
-            }
+            };
             //搜索内容加载更多
             $scope.searchs = [];
             $scope.SrsLoadMore = function() {
@@ -129,7 +129,7 @@ angular.module('ionicApp.MemosCtrl', [])
                         ]
                     })
                 }
-            }
+            };
             //我的提问
             $scope.myques = function () {
                 if($scope.popover!=null)
@@ -154,7 +154,7 @@ angular.module('ionicApp.MemosCtrl', [])
                         ]
                     })
                 }
-            }
+            };
             //我的回答
             $scope.myanswers = function () {
                 if($scope.popover!=null)
@@ -179,7 +179,7 @@ angular.module('ionicApp.MemosCtrl', [])
                         ]
                     })
                 }
-            }
+            };
             // 弹出菜单
             $ionicPopover.fromTemplateUrl('templates/utility-memos-popover.html',{
                 scope:$scope

@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.speedandspeed.babythings" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>宝宝物品管家</name>
-    <icon src="www/res/logo.png" />
+<widget id="com.okek.jtbang" version="0.0.1">
+  <name>交通帮</name>
   <description>
-        帮你记忆和管理宝宝的所有物品，不再遗忘.
-    </description>
-  <author email="my101du@gmail.com" href="http://www.itjiaoshou.com/">
-      my101du
-    </author>
+    交通帮 - 有问题 - 找交通帮
+  </description>
+  <author email="4074006@qq.com">
+    Alex
+  </author>
   <content src="index.html"/>
   <access origin="*"/>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="BackupWebStorage" value="none"/>
+  <preference name="SplashScreen" value="screen"/>
+  <preference name="SplashScreenDelay" value="10000"/>
+  <preference name="loadUrlTimeoutValue" value="999999"/>
+  <preference name="AutoHideSplashScreen" value="false"/>
+  <preference name="ShowSplashScreenSpinner" value="false"/>
+  <preference name="Orientation" value="portrait" />
+  <preference name="android-minSdkVersion" value="14"/>
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>

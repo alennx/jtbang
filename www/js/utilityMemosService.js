@@ -64,6 +64,8 @@ angular.module('ionicApp.services', [])
                     return str.join("&");
                 }
             }).success(function(response){
+                console.log("第一次登陆返回:");
+                console.log(response);
                 user = response;
                 if(user.errno == '1'){
                     var userid = user.rsm.user.userid;
@@ -85,6 +87,8 @@ angular.module('ionicApp.services', [])
                             return str.join("&");
                         }
                     }).success(function(response){
+                        console.log("交通帮注册:");
+                        console.log(response);
                         register = response;
                         if(response.errno == '1'){
                             $http({
@@ -100,6 +104,8 @@ angular.module('ionicApp.services', [])
                                     return str.join("&");
                                 }
                             }).success(function(response){
+                                console.log("第二次登陆返回:");
+                                console.log(response);
                                 user = response;
                                 if(user.errno == '1'){
                                     $rootScope.jtbang_user = user;

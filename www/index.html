@@ -19,9 +19,14 @@
     <script src="js/directive.js"></script>
     <script src="js/globals.js"></script>
     <script src="js/jtbang_md5.js"></script>
+    <script src="vconsole.min.js"></script>
 </head>
-<body animation="no-animation"  ng-app="ionicApp">
-<ion-nav-view title="New Entry Form" hide-tabs></ion-nav-view>
+<body ng-app="ionicApp">
+<ion-nav-bar class="bar bar-energized nav-title-slide-ios7">
+    <ion-nav-back-button class="button-icon icon  ion-ios7-arrow-back">
+    </ion-nav-back-button>
+</ion-nav-bar>
+<ion-nav-view style="background:rgba(255,255,255,0);"></ion-nav-view>
 </body>
 <script>
     //保存uid到本地
