@@ -20,7 +20,7 @@ angular.module('ionicApp.MemoContentCtrl', [])
                 $rootScope.Loadinghide();
             }
             $scope.loadUrl = function(url,title){
-                startWebViewService.loadUrl(url,title);
+                console.log("内容详情");
             };
             var memos = Memos.allMemos();
             if(memos.question_detail == null){
@@ -52,7 +52,7 @@ angular.module('ionicApp.MemoContentCtrl', [])
             //保存新的回复
             function newreply(){
                 var url_newreply = "http://www.jtbang.cn/question/ajax/save_answer/";
-                var question_id = window.localStorage.getItem(set_question_id);
+                var question_id = localStorage.getItem(set_question_id);
                 var str_reply = window.sessionStorage.str_reply;
                 var reply_content = angular.fromJson(str_reply);
                 var content = reply_content.content;

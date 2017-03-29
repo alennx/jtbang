@@ -1,4 +1,4 @@
-angular.module('ionicApp', ['ionic', 'ionicApp.controllers',  'ionicApp.services','ionicApp.MemosCtrl','ionicApp.MemoQuesCtrl','ionicApp.MemoDetailCtrl','ionicApp.MemoContentCtrl','ionicApp.MemoAnswersCtrl','ionicApp.MyCtrl','ionicApp.directives',])
+angular.module('ionicApp', ['ionic', 'ionicApp.controllers','ionicApp.services','ionicApp.MemosCtrl','ionicApp.MemoQuesCtrl','ionicApp.MemoDetailCtrl','ionicApp.MemoContentCtrl','ionicApp.MemoAnswersCtrl','ionicApp.MyCtrl','ionicApp.directives',])
  .config(function ($stateProvider, $urlRouterProvider) {
         $stateProvider
             // 全局
@@ -56,17 +56,6 @@ angular.module('ionicApp', ['ionic', 'ionicApp.controllers',  'ionicApp.services
                     }
                 }
             })
-            //个人中心
-            .state('tab.my', {
-                url: '/my',
-                views: {
-                    'tab-my': {
-                        templateUrl: 'templates/my.html',
-                        controller: 'MyCtrl'
-                    }
-                }
-            })
-
             //我的问题utility-memo-answers.html
             .state('tab.memo-ques', {
                 url: '/memo-ques',

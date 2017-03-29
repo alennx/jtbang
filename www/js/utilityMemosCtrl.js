@@ -6,6 +6,10 @@ angular.module('ionicApp.MemosCtrl', [])
                 $rootScope.isHideTabs=true;
             });
             $rootScope.isjtbanglogin=false;
+            //记忆滚动位置;
+            var delegate = $ionicScrollDelegate.$getByHandle('myScroll');
+            delegate.rememberScrollPosition();
+            delegate.scrollToRememberedPosition();
             var uid = localStorage.getItem('uid');
             Memos.GetJtbang_user(uid);
             //首页加载
@@ -64,6 +68,11 @@ angular.module('ionicApp.MemosCtrl', [])
                 $scope.doRefresh();
                 return defer.promise;
             };
+            //跳转
+            $scope.GoContent=function(id){
+                localStorage.setItem(set_question_id,id);
+                $state.go("tab.memo-content");
+            };
             //搜索值获取
             $scope.srs = {};
             $scope.srs.jtb_search = '';
@@ -96,7 +105,7 @@ angular.module('ionicApp.MemosCtrl', [])
                         }
                     });
                 }
-            };
+            }
             //搜索内容加载更多
             $scope.searchs = [];
             $scope.SrsLoadMore = function() {
@@ -129,11 +138,7 @@ angular.module('ionicApp.MemosCtrl', [])
                         ]
                     })
                 }
-            };
-            $scope.GoContent=function(id){
-                localStorage.setItem('set_question_id',id);
-                $state.go('tab.memo-content');
-            };
+            }
             //我的提问
             $scope.myques = function () {
                 if($scope.popover!=null)
@@ -183,7 +188,7 @@ angular.module('ionicApp.MemosCtrl', [])
                         ]
                     })
                 }
-            };
+            }
             // 弹出菜单
             $ionicPopover.fromTemplateUrl('templates/utility-memos-popover.html',{
                 scope:$scope

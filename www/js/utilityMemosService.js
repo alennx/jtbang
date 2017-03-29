@@ -57,8 +57,6 @@ angular.module('ionicApp.services', [])
             };
             var url_jtbang_register = "http://www.jtbang.cn/account/ajax/register_process/";
             var url_login = "http://www.jtbang.cn/account/ajax/login_process/";
-            console.log("第一次登陆信息:");
-            console.log(data);
             $http({
                 method:"POST",
                 url:url_login,
@@ -72,8 +70,6 @@ angular.module('ionicApp.services', [])
                     return str.join("&");
                 }
             }).success(function(response){
-                console.log("第一次登陆返回:");
-                console.log(response);
                 user = response;
                 if(user.errno == '1'){
                     var userid = user.rsm.user.userid;
@@ -95,10 +91,6 @@ angular.module('ionicApp.services', [])
                             return str.join("&");
                         }
                     }).success(function(response){
-                        console.log("注册信息:");
-                        console.log(data);
-                        console.log("交通帮注册:");
-                        console.log(response);
                         register = response;
                         if(response.errno == '1'){
                             $http({
@@ -114,8 +106,6 @@ angular.module('ionicApp.services', [])
                                     return str.join("&");
                                 }
                             }).success(function(response){
-                                console.log("第二次登陆返回:");
-                                console.log(response);
                                 user = response;
                                 if(user.errno == '1'){
                                     $rootScope.jtbang_user = user;
