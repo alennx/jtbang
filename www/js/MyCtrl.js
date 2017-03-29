@@ -4,14 +4,13 @@ function ($scope,Memos,$rootScope,$stateParams,$http, $ionicModal,$state,$ionicP
     //模拟登录
     $scope.login = function(){
         Memos.getlogin();
-    }
+    };
     //我的提问
-        $scope.myques = function () {
-            $state.go('menu.tab.memo-ques', {});
-        }
+    $scope.myques = function () {
+        $state.go('tab.memo-ques', {});
+    };
     //我的回答
     $scope.myanswers = function () {
-        $state.go('menu.tab.memo-answers', {});
-    }
-
+        $state.go('tab.memo-answers', {});
+    };
     }]);

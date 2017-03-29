@@ -51,6 +51,8 @@ angular.module('ionicApp.services', [])
             };
             var url_jtbang_register = "http://www.jtbang.cn/account/ajax/register_process/";
             var url_login = "http://www.jtbang.cn/account/ajax/login_process/";
+            console.log("第一次登陆信息:");
+            console.log(data);
             $http({
                 method:"POST",
                 url:url_login,
@@ -87,6 +89,8 @@ angular.module('ionicApp.services', [])
                             return str.join("&");
                         }
                     }).success(function(response){
+                        console.log("注册信息:");
+                        console.log(data);
                         console.log("交通帮注册:");
                         console.log(response);
                         register = response;
