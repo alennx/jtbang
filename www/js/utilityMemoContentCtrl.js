@@ -76,6 +76,8 @@ angular.module('ionicApp.MemoContentCtrl', [])
                 }).success(function(response){
                     defer.resolve();
                     if(response.errno == 1) {
+                        //诸葛io统计
+                        zhuge.track('APP-交通帮回答问题', {'内容': content});
                         $rootScope.Loadinghide();
                         $ionicPopup.show({
                             title: "发布问题成功",

@@ -73,6 +73,10 @@ angular.module('ionicApp.services', [])
                 user = response;
                 if(user.errno == '1'){
                     var userid = user.rsm.user.userid;
+                    //诸葛io统计
+                    zhuge.track('APP-交通帮登录', {
+                        '用户ID':uid || '',
+                        '交通帮ID': userid});
                     window.sessionStorage.setItem(set_userid,userid);
                     $rootScope.jtbang_user = user;
                     $rootScope.isjtbanglogin = true;
@@ -110,6 +114,10 @@ angular.module('ionicApp.services', [])
                                 if(user.errno == '1'){
                                     $rootScope.jtbang_user = user;
                                     var userid = user.rsm.user.userid;
+                                    //诸葛io统计
+                                    zhuge.track('APP-交通帮登录', {
+                                        '用户ID':uid || '',
+                                        '交通帮ID': userid});
                                     window.sessionStorage.setItem(set_userid,userid);
                                     $rootScope.isjtbanglogin = true;
                                 }
@@ -295,6 +303,10 @@ angular.module('ionicApp.services', [])
                 }
             }).success(function(response){
                 if(response.errno == 1){
+                    //诸葛io统计
+                    zhuge.track('APP-交通帮发布问题', {
+                        '标题':question_detail || '',
+                        '内容': question_content});
                     $ionicPopup.show({
                         title: "发布问题成功",
                         buttons: [
