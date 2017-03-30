@@ -55,6 +55,8 @@ angular.module('ionicApp.services', [])
                 email:zeroFill(uid)+'@okek.cn',
                 agreement_chk:'agree'
             };
+            console.log("第一次登陆参数：");
+            console.log(data);
             var url_jtbang_register = "http://www.jtbang.cn/account/ajax/register_process/";
             var url_login = "http://www.jtbang.cn/account/ajax/login_process/";
             $http({
@@ -70,6 +72,8 @@ angular.module('ionicApp.services', [])
                     return str.join("&");
                 }
             }).success(function(response){
+                console.log("第一次登陆返回：");
+                console.log(response);
                 user = response;
                 if(user.errno == '1'){
                     var userid = user.rsm.user.userid;
@@ -95,6 +99,8 @@ angular.module('ionicApp.services', [])
                             return str.join("&");
                         }
                     }).success(function(response){
+                        console.log("第一次注册返回：");
+                        console.log(response);
                         register = response;
                         if(response.errno == '1'){
                             $http({
