@@ -167,7 +167,7 @@ angular.module('ionicApp.services', [])
         //上拉加载更多
         GetPage: function(){
             var page = nextPage;
-            nextPage++
+            nextPage++;
             return $http.get(jtb_url+'per_page-'+per_page+'__page-'+page+'__sort_type-new__ptype-question').then(function(response){
                 memos = response.data;
                 var str = JSON.stringify(memos);

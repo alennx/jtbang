@@ -6,10 +6,6 @@ angular.module('ionicApp.MemosCtrl', [])
                 $rootScope.isHideTabs=true;
             });
             $rootScope.isjtbanglogin=false;
-            //记忆滚动位置;
-            var delegate = $ionicScrollDelegate.$getByHandle('myScroll');
-            delegate.rememberScrollPosition();
-            delegate.scrollToRememberedPosition();
             var uid = localStorage.getItem('uid');
             Memos.GetJtbang_user(uid);
             //首页加载

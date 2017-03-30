@@ -1,6 +1,10 @@
 angular.module('ionicApp', ['ionic', 'ionicApp.controllers','ionicApp.services','ionicApp.MemosCtrl','ionicApp.MemoQuesCtrl','ionicApp.MemoDetailCtrl','ionicApp.MemoContentCtrl','ionicApp.MemoAnswersCtrl','ionicApp.MyCtrl','ionicApp.directives',])
- .config(function ($stateProvider, $urlRouterProvider) {
-        $stateProvider
+ .config(function ($stateProvider, $urlRouterProvider,$ionicConfigProvider) {
+     $ionicConfigProvider.tabs.position('bottom');
+     $ionicConfigProvider.tabs.style('standard');
+     $ionicConfigProvider.navBar.alignTitle('center');
+     $ionicConfigProvider.backButton.text('返回').icon('ion-ios-arrow-back');
+     $stateProvider
             // 全局
             .state('tab', {
                 url: "/tab",
