@@ -7,7 +7,8 @@ angular.module('ionicApp.MemosCtrl', [])
             });
             $rootScope.isjtbanglogin=false;
             var uid = localStorage.getItem('uid');
-            Memos.GetJtbang_user(uid);
+            Memos.OutJtbang_user();//退出
+            Memos.GetJtbang_user(uid);//登陆
             //首页加载
             Memos.GetPer_page();
             //上拉刷新
