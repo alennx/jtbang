@@ -13,7 +13,7 @@ angular.module('ionicApp', ['ionic', 'ionicApp.controllers','ionicApp.services',
             //交通帮
             .state('tab.memos',{
                 url:'/memos',
-                cache:'true',
+                cache:'false',
                 views:{
                     'tab-memos':{
                         templateUrl:'templates/utility-memos.html',
