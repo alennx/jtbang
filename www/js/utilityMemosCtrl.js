@@ -123,15 +123,7 @@ angular.module('ionicApp.MemosCtrl', [])
                         template:"需要注册登录后才能发布问题",
                         scope: $scope,
                         buttons: [
-                            { text: "取消" },
-                            {
-                                text: "<a class='bdhm'>注册</a>",
-                                type: "button-positive",
-                                onTap: function(e) {
-                                    //返回登陆首页
-                                    //安卓或者ios代码
-                                }
-                            }
+                            { text: "关闭" }
                         ]
                     })
                 }
