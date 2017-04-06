@@ -325,7 +325,7 @@ angular.module('ionicApp.services', [])
                     $state.go('tab.memos',{reload: true});
                 }else{
                     $ionicPopup.alert({
-                        title: "输入内容错误，请重试"
+                        title: response.err
                     })
                 }
             }).error(function(){
