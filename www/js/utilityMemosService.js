@@ -10,15 +10,12 @@ angular.module('ionicApp.services', [])
     var gethaxi = {};
     var user = {};
     var register ={};
-    $rootScope.Loadingshow=function(){
-        $ionicLoading.show({
-            template: '<ion-spinner icon="ios"></ion-spinner><p>正在加载....</p>' //替换默认动画
-        });
-    };
-    $rootScope.Loadinghide=function(){$ionicLoading.hide()};
     var funcs= {
         //获取我的提问列表
         GetQues_page: function(){
+            $ionicLoading.show({
+                template: '加载中...'
+            });
             var ques_url = "http://www.jtbang.cn/people/ajax/user_actions/";
             var uid = window.sessionStorage.getItem(set_userid);
             return $http.get(ques_url+'uid-'+uid+'__actions-101__page-0__ajax-1').then(function(response){
@@ -26,22 +23,30 @@ angular.module('ionicApp.services', [])
                 $rootScope.ques = ques;
                 var ques_str = JSON.stringify(ques);
                 window.sessionStorage.ques_str1 = ques_str;
+                $ionicLoading.hide();
                 return ques;
             });
         },
         //获取我的回答列表
         GetAnwsers_page: function(){
+            $ionicLoading.show({
+                template: '加载中...'
+            });
             var ques_url = "http://www.jtbang.cn/people/ajax/user_actions/";
             var uid = window.sessionStorage.getItem(set_userid);
             return $http.get(ques_url+'uid-'+uid+'__actions-201__page-0__ajax-1').then(function(response){
                 anwsers = response.data;
                 var anwsers_str = JSON.stringify(anwsers);
                 window.sessionStorage.anwsers_str1 = anwsers_str;
+                $ionicLoading.hide();
                 return anwsers;
             });
         },
         //交通帮登录
         GetJtbang_user:function(uid){
+            $ionicLoading.show({
+                template: '加载中...'
+            });
             function zeroFill(num){
                 var str=num+"";
                 while(str.length<8)
@@ -76,6 +81,7 @@ angular.module('ionicApp.services', [])
                 console.log(response);
                 user = response;
                 if(user.errno == '1'){
+                    $ionicLoading.hide();
                     var userid = user.rsm.user.userid;
                     //诸葛io统计
                     zhuge.track('APP-交通帮登录', {
@@ -130,6 +136,7 @@ angular.module('ionicApp.services', [])
                             }).error(function () {
                                 funcs.ieerror();
                             });
+                            $ionicLoading.hide();
                         }else{
                             return;
                         }
@@ -169,23 +176,31 @@ angular.module('ionicApp.services', [])
         },
         //下拉刷新第一页
         GetDoRefresh_page: function(){
+            $ionicLoading.show({
+                template: '加载中...'
+            });
             var page = 1;
             return $http.get(jtb_url+'per_page-'+per_page+'__page-'+page+'__sort_type-new__ptype-question').then(function(response){
                 memos = response.data;
                 var str = JSON.stringify(memos);
                 window.sessionStorage.str3 = str;
                 nextPage = 2;
+                $ionicLoading.hide();
                 return memos;
             });
         },
         //上拉加载更多
         GetPage: function(){
+            $ionicLoading.show({
+                template: '加载中...'
+            });
             var page = nextPage;
             nextPage++;
             return $http.get(jtb_url+'per_page-'+per_page+'__page-'+page+'__sort_type-new__ptype-question').then(function(response){
                 memos = response.data;
                 var str = JSON.stringify(memos);
                 window.sessionStorage.str2 = str;
+                $ionicLoading.hide();
                 return memos;
             });
         },
@@ -202,12 +217,16 @@ angular.module('ionicApp.services', [])
         },
         //查看问题详情
         GetPer_detail: function(){
+            $ionicLoading.show({
+                template: '加载中...'
+            });
             var id = window.localStorage.getItem(set_question_id);
             var GetPer_detail_url = 'http://www.jtbang.cn/question/';
             return $http.get(GetPer_detail_url+id+'?ajax=1&notmobile').then(function(response){
                 questions = response.data;
                 var str_questions = JSON.stringify(questions);
                 window.sessionStorage.str_questions = str_questions;
+                $ionicLoading.hide();
                 return questions;
             });
         },
@@ -221,6 +240,9 @@ angular.module('ionicApp.services', [])
         },
         //搜索请求
         getsearch:function(){
+            $ionicLoading.show({
+                template: '加载中...'
+            });
             var str_search = window.sessionStorage.str_search;
             var searchs = angular.fromJson(str_search);
             var q = searchs.jtb_search;
@@ -229,11 +251,15 @@ angular.module('ionicApp.services', [])
                 searchs = response.data;
                 var searchs_str = JSON.stringify(searchs);
                 window.sessionStorage.searchs_str = searchs_str;
+                $ionicLoading.hide();
                 return searchs;
             });
         },
         //搜索结果
         GetSrs_page: function(){
+            $ionicLoading.show({
+                template: '加载中...'
+            });
             var url_srs = 'http://www.jtbang.cn/search/ajax/search_result/';
             var str_search = window.sessionStorage.str_search;
             var searchs = angular.fromJson(str_search);
@@ -243,11 +269,15 @@ angular.module('ionicApp.services', [])
                 searchs = response.data;
                 var search = JSON.stringify(searchs);
                 window.sessionStorage.search1 = search;
+                $ionicLoading.hide();
                 return searchs;
             });
         },
         //搜索结果下拉加载更多
         GetSrsmore_page: function(){
+            $ionicLoading.show({
+                template: '加载中...'
+            });
             var url_srs = 'http://www.jtbang.cn/search/ajax/search_result/';
             var str_search = window.sessionStorage.str_search;
             var searchs = angular.fromJson(str_search);
@@ -258,6 +288,7 @@ angular.module('ionicApp.services', [])
                 searchs = response.data;
                 var search = JSON.stringify(searchs);
                 window.sessionStorage.search2 = search;
+                $ionicLoading.hide();
                 return searchs;
             });
         },
@@ -283,6 +314,9 @@ angular.module('ionicApp.services', [])
         },
         //发布问题
         newMemo: function () {
+            $ionicLoading.show({
+                template: '加载中...'
+            });
             //获取内容
             var str_detail = window.sessionStorage.str_detail;
             var detail = angular.fromJson(str_detail);
@@ -341,6 +375,7 @@ angular.module('ionicApp.services', [])
                     user_name:''
                 }
             };
+            $ionicLoading.hide();
         },
         //回复内容
         Reply_request:function(content){
@@ -357,5 +392,5 @@ angular.module('ionicApp.services', [])
         }
     };
     return funcs;
-})
+});
 

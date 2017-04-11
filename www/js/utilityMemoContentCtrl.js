@@ -2,10 +2,15 @@ angular.module('ionicApp.MemoContentCtrl', [])
     .controller('MemoContentCtrl',['$scope', '$state','$rootScope','$stateParams', 'Memos','$q','$ionicLoading','$timeout','$http','$ionicPopup',
         function ($scope, $state,$rootScope, $stateParams, Memos,$q,$ionicLoading,$timeout,$http,$ionicPopup) {
             $scope.DelButtonShow = false;
+            $ionicLoading.show({
+                template: '加载中...'
+            });
             //获取问题和回复
             GetPer_detail();
             function GetPer_detail(){
-                $rootScope.Loadingshow();
+                $ionicLoading.show({
+                    template: '加载中...'
+                });
                 Memos.GetPer_detail().then(function(questions){
                     $scope.questions = questions;
                     $scope.answers = [];
@@ -17,7 +22,7 @@ angular.module('ionicApp.MemoContentCtrl', [])
                     }
                     $scope.answers = questions.answers;
                 });
-                $rootScope.Loadinghide();
+                $ionicLoading.hide();
             }
             $scope.loadUrl = function(url,title){
                 console.log("内容详情");
@@ -78,7 +83,6 @@ angular.module('ionicApp.MemoContentCtrl', [])
                     if(response.errno == 1) {
                         //诸葛io统计
                         zhuge.track('APP-交通帮回答问题', {'内容': content});
-                        $rootScope.Loadinghide();
                         $ionicPopup.show({
                             title: "发布问题成功",
                             buttons: [
@@ -89,13 +93,11 @@ angular.module('ionicApp.MemoContentCtrl', [])
                             ]
                         });
                     }else{
-                        $rootScope.Loadinghide();
                         $ionicPopup.alert({
                             title: "回答内容失败，请重试"
                         })
                     }
                 }).error(function(){
-                    $rootScope.Loadinghide();
                     $ionicPopup.alert({
                         title: "网络出错，请重试"
                     })
@@ -106,9 +108,7 @@ angular.module('ionicApp.MemoContentCtrl', [])
             $scope.replyData = {};
             $scope.replyData.content = "";
             $scope.saveReply = function () {
-                $rootScope.Loadingshow();
                 if($scope.replyData.content.length==0){
-                    $rootScope.Loadinghide();
                     $ionicPopup.alert({
                         title:'回答不能为空'
                     });

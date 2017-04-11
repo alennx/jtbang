@@ -12,6 +12,9 @@ function ($rootScope,$scope, $state, $stateParams, Memos,$http) {
         $scope.memo.placeholder = '交通帮发布标准为：仅限于发布有关交通、违章、汽车行业方面的话题，发布内容请严格遵守国家相关法律法规';
         //发布信息
         $scope.saveMemo = function () {
+            $ionicLoading.show({
+                template: '加载中...'
+            });
             Memos.Detail_request(
                 $scope.memo.question_content.toUpperCase(),
                 $scope.memo.question_detail.toUpperCase()
