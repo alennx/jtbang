@@ -1,5 +1,5 @@
-angular.module('ionicApp.MemoDetailCtrl', []).controller('MemoDetailCtrl',['$rootScope','$scope', '$state', '$stateParams', 'Memos','$http',
-function ($rootScope,$scope, $state, $stateParams, Memos,$http) {
+angular.module('ionicApp.MemoDetailCtrl', []).controller('MemoDetailCtrl',['$rootScope','$scope', '$state', '$stateParams', 'Memos','$ionicLoading',
+function ($rootScope,$scope, $state, $stateParams, Memos,$ionicLoading) {
 
         $scope.DelButtonShow = false;
 
