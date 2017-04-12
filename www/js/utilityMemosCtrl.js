@@ -1,6 +1,6 @@
 angular.module('ionicApp.MemosCtrl', [])
-    .controller("MemosCtrl",['$scope','Memos','$rootScope','$stateParams','$http','$ionicModal','$state','$ionicPopup','$ionicScrollDelegate','$ionicPopover','$location',
-        function ($scope,Memos,$rootScope,$stateParams,$http, $ionicModal,$state,$ionicPopup,$ionicScrollDelegate,$ionicPopover,$location) {
+    .controller("MemosCtrl",['$scope','Memos','$rootScope','$stateParams','$http','$ionicModal','$state','$ionicPopup','$ionicScrollDelegate','$ionicPopover','$location','$ionicHistory',
+        function ($scope,Memos,$rootScope,$stateParams,$http, $ionicModal,$state,$ionicPopup,$ionicScrollDelegate,$ionicPopover,$location,$ionicHistory) {
             $scope.memos = [];
             $scope.$on("$ionicView.beforeEnter",function(){
                 $rootScope.isHideTabs=true;
@@ -27,7 +27,7 @@ angular.module('ionicApp.MemosCtrl', [])
                             buttons: [
                                 {
                                     text: "<b>确定</b>",
-                                    type: "button-positive"
+                                    type: "button-energized"
                                 }
                             ]
                         });
@@ -50,7 +50,7 @@ angular.module('ionicApp.MemosCtrl', [])
                             buttons: [
                                 {
                                     text: "<b>确定</b>",
-                                    type: "button-positive"
+                                    type: "button-energized"
                                 }
                             ]
                         });
@@ -83,10 +83,10 @@ angular.module('ionicApp.MemosCtrl', [])
                         buttons: [
                             {
                                 text: "<b>确定</b>",
-                                type: "button-positive",
+                                type: "button-energized",
                             }
                         ]
-                    })
+                    });
                 }else{
                     $state.go('tab.memo-srs', {});
                     Memos.Search_request(
@@ -107,8 +107,29 @@ angular.module('ionicApp.MemosCtrl', [])
             //搜索内容加载更多
             $scope.searchs = [];
             $scope.SrsLoadMore = function() {
-                console.log("11");
                 Memos.GetSrsmore_page().then(function(searchs){
+                    console.log(typeof searchs);
+                    if(searchs=='null' || searchs==null){
+                        $ionicPopup.show({
+                            template: "",
+                            title: "搜索内容暂无数据",
+                            scope: $scope,
+                            buttons: [
+                                { text: "返回" ,
+                                    type: "button-energized",
+                                    onTap: function(e) {
+                                        $ionicHistory.goBack(-100);
+                                    }},
+                                {
+                                    text: "<a class='bdhm'>去提问</a>",
+                                    type: "button-energized",
+                                    onTap: function(e) {
+                                        $scope.addMemo();
+                                    }
+                                }
+                            ]
+                        });
+                    }
                     for(var i=0;i<searchs.length;i++){
                         $scope.searchs.push(searchs[i]);
                     }
@@ -132,7 +153,7 @@ angular.module('ionicApp.MemosCtrl', [])
                             { text: "取消" },
                             {
                                 text: "<a class='bdhm'>登录</a>",
-                                type: "button-positive",
+                                type: "button-energized",
                                 onTap: function(e) {
                                     Memos.GetJtbang_user(uid);
                                 }
@@ -156,7 +177,7 @@ angular.module('ionicApp.MemosCtrl', [])
                             { text: "取消" },
                             {
                                 text: "<a class='bdhm'>登录</a>",
-                                type: "button-positive",
+                                type: "button-energized",
                                 onTap: function(e) {
                                     Memos.GetJtbang_user(uid);
                                 }
@@ -180,7 +201,7 @@ angular.module('ionicApp.MemosCtrl', [])
                             { text: "取消" },
                             {
                                 text: "<a class='bdhm'>注册</a>",
-                                type: "button-positive",
+                                type: "button-energized",
                                 onTap: function(e) {
                                     //返回登陆首页
                                     //安卓或者ios代码
