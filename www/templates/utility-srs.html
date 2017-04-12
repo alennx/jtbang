@@ -19,6 +19,7 @@
             </a>
         </div>
         <ion-infinite-scroll
+                ng-if="moreDataCanBeLoaded"
                 on-infinite="SrsLoadMore()"
                 distance="1%">
         </ion-infinite-scroll>

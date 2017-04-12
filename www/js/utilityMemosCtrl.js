@@ -72,6 +72,7 @@ angular.module('ionicApp.MemosCtrl', [])
             };
             //搜索值获取
             $scope.srs = {};
+            $scope.moreDataCanBeLoaded=true;
             $scope.srs.jtb_search = '';
             $scope.jtb_search_commit = function(){
                 if($scope.srs.jtb_search.length == 0){
@@ -91,7 +92,7 @@ angular.module('ionicApp.MemosCtrl', [])
                     Memos.Search_request(
                         $scope.srs.jtb_search.toUpperCase()
                     );
-                    Memos.getsearch();
+                    //Memos.getsearch();
                     //搜索结果显示
                     Memos.GetSrs_page().then(function(searchs){
                         $scope.searchs = searchs;
@@ -106,11 +107,16 @@ angular.module('ionicApp.MemosCtrl', [])
             //搜索内容加载更多
             $scope.searchs = [];
             $scope.SrsLoadMore = function() {
+                console.log("11");
                 Memos.GetSrsmore_page().then(function(searchs){
                     for(var i=0;i<searchs.length;i++){
                         $scope.searchs.push(searchs[i]);
                     }
-                    $scope.$broadcast('scroll.infiniteScrollComplete');
+                    if(searchs.length==10){
+                        $scope.$broadcast('scroll.infiniteScrollComplete');
+                    }else{
+                        $scope.moreDataCanBeLoaded=false;
+                    }
                 });
             };
             //添加信息
