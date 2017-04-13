@@ -358,9 +358,10 @@ angular.module('ionicApp.services', [])
                     });
                     $state.go('tab.memos',{reload: true});
                 }else{
+                    $ionicLoading.hide();
                     $ionicPopup.alert({
                         title: response.err
-                    })
+                    });
                 }
             }).error(function(){
                 $ionicPopup.alert({
