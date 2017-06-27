@@ -1,6 +1,7 @@
 angular.module('ionicApp', ['ionic', 'ionicApp.controllers','ionicApp.services','ionicApp.MemosCtrl','ionicApp.MemoQuesCtrl','ionicApp.MemoDetailCtrl','ionicApp.MemoContentCtrl','ionicApp.MemoAnswersCtrl','ionicApp.MyCtrl','ionicApp.directives',])
  .config(function ($stateProvider, $urlRouterProvider,$ionicConfigProvider) {
      $ionicConfigProvider.tabs.position('bottom');
+     $ionicConfigProvider.views.swipeBackEnabled(false);
      $ionicConfigProvider.tabs.style('standard');
      $ionicConfigProvider.navBar.alignTitle('center');
      $ionicConfigProvider.backButton.text('返回').icon('ion-ios-arrow-back');
